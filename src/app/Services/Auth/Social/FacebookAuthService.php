@@ -2,7 +2,6 @@
 
 namespace App\Services\Auth\Social;
 
-use App\Services\Auth\Social\SocialAuthService;
 use App\Models\User\User;
 use Laravel\Socialite\Two\User as SocialiteUser;
 use Laravel\Socialite\Facades\Socialite;

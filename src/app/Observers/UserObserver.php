@@ -18,10 +18,5 @@ class UserObserver {
 
     public function creating(User $user) : void
     {
-        $isVerifyByEmailOn = config('auth.verify_by_email', false);
-        if ($isVerifyByEmailOn) {
-            $user->generateVerifyToken();
-            $this->_userService->sendVerifyEmail($user);
-        }
     }
 }
