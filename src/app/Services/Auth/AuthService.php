@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Auth;
 
 use App\Models\User\User;
 use App\Exceptions\UnauthorizedException;
@@ -16,7 +16,7 @@ class AuthService {
      *
      * @return array
      */
-    private function _respondWithToken($token)
+    private function _respondWithToken($token) : array
     {
         return [
             'access_token' => $token,
@@ -32,7 +32,7 @@ class AuthService {
      *
      * @return array
      */
-    public function login($credentials)
+    public function login(array $credentials) : array
     {
         if (!$token=auth()->attempt($credentials)) {
             throw new UnauthorizedException;
@@ -48,7 +48,7 @@ class AuthService {
      *
      * @return array
      */
-    public function register($credentials)
+    public function register($credentials) : array
     {
         User::create($credentials);
 
@@ -60,7 +60,7 @@ class AuthService {
      *
      * @return array
      */
-    public function refresh()
+    public function refresh() : array
     {
         $token = JWTAuth::getToken();
 

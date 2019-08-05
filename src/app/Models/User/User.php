@@ -12,6 +12,16 @@ use App\Constants\UserConstants;
 class User extends Authenticatable implements JWTSubject {
     use Notifiable;
 
+    const PASSWORD_LENGTH = 191;
+
+    const SOCIAL_FACEBOOK = 'facebook';
+    const SOCIAL_GOOGLE = 'google';
+    const SOCIAL_LOGINS = [
+        self::SOCIAL_FACEBOOK,
+        self::SOCIAL_GOOGLE
+    ];
+
+
     /**
      * Route notifications for the Slack channel.
      *
@@ -28,7 +38,8 @@ class User extends Authenticatable implements JWTSubject {
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'avatar'
+        'first_name', 'last_name', 'email', 'password', 'social_id', 'social_type',
+        'avatar'
     ];
 
     /**
@@ -77,7 +88,7 @@ class User extends Authenticatable implements JWTSubject {
      *
      * @param Builder $query
      * @param string $email
-     * @return void
+     * @return Builder
      */
     public function scopeWithEmail(Builder $query, string $email) : Builder
     {
@@ -85,6 +96,32 @@ class User extends Authenticatable implements JWTSubject {
     }
 
     /**
+     * Find google user by social id
+     *
+     * @param Builder $query
+     * @param string $id
+     * @return Builder
+     */
+    public function scopeWithGoogleSocialId(Builder $query, string $id) : Builder
+    {
+        return $query->where('social_id', $id)
+            ->where('social_type', self::SOCIAL_GOOGLE);
+    }
+
+    /**
+     * Find facebook user by social id
+     *
+     * @param Builder $query
+     * @param string $id
+     * @return Builder
+     */
+    public function scopeWithFacebookSocialId(Builder $query, string $id) : Builder
+    {
+        return $query->where('social_id', $id)
+            ->where('social_type', self::SOCIAL_FACEBOOK);
+    }
+
+    /*
      * Remove token and date for reset password
      * from model
      *

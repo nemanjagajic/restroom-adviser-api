@@ -5,6 +5,7 @@
 /storage/api-docs
 /vendor
 /.idea
+.idea
 /.vscode
 /.vagrant
 Homestead.json
