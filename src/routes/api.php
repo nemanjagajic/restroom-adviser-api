@@ -33,14 +33,13 @@ Route::group([ 'namespace' => 'Api' ], function () {
         Route::post('reset-password', 'ForgotPasswordController@resetPassword');
     });
 
-    Route::group([ 'middleware' => [ 'auth:api', 'email-verified' ] ], function () {
+    Route::group([ 'middleware' => [ 'auth:api' ] ], function () {
         Route::group([
             'prefix' => 'user',
             'namespace' => 'User'
         ], function () {
             Route::post('change-password', 'UserController@changePassword');
             Route::post('/', 'UserController@updateProfile');
-            Route::post('/verify/resend', 'UserController@sendVerifyEmail');
         });
     });
 });

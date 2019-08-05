@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Exceptions\UnauthorizedException;
 use App\Services\Auth\AuthService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserLoginRequest;
 use App\Http\Requests\User\UserCreateRequest;
+use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller {
     private $_authService;
@@ -13,7 +15,7 @@ class AuthController extends Controller {
     /**
      * Create a new AuthController instance.
      *
-     * @return void
+     * @param AuthService $authService
      */
     public function __construct(AuthService $authService)
     {
@@ -58,7 +60,8 @@ class AuthController extends Controller {
      * )
      *
      * @param UserLoginRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return array
+     * @throws UnauthorizedException
      */
     public function login(UserLoginRequest $request)
     {
@@ -114,7 +117,7 @@ class AuthController extends Controller {
      *   @SWG\Response(response=500, description="Internal server error")
      * )
      * @param UserCreateRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return array
      */
     public function register(UserCreateRequest $request)
     {
@@ -137,7 +140,7 @@ class AuthController extends Controller {
      *   security={{"authorization_token":{}}}
      * )
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function me()
     {
@@ -158,7 +161,7 @@ class AuthController extends Controller {
      * )
      *
      * @param UserRefreshTokenRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function logout()
     {
@@ -181,7 +184,7 @@ class AuthController extends Controller {
      * )
      *
      * @param UserRefreshTokenRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function refresh()
     {

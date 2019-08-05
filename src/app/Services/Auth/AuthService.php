@@ -4,6 +4,7 @@ namespace App\Services\Auth;
 
 use App\Models\User\User;
 use App\Exceptions\UnauthorizedException;
+use phpDocumentor\Reflection\Types\Object_;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
 use App\Exceptions\TokenExpiredException;
@@ -31,6 +32,7 @@ class AuthService {
      * @param array $credentials
      *
      * @return array
+     * @throws UnauthorizedException
      */
     public function login(array $credentials) : array
     {
@@ -46,13 +48,11 @@ class AuthService {
      *
      * @param array $credentials
      *
-     * @return array
+     * @return Object
      */
-    public function register($credentials) : array
+    public function register($credentials) : Object
     {
-        User::create($credentials);
-
-        return $this->login($credentials);
+        return User::create($credentials);
     }
 
     /**
