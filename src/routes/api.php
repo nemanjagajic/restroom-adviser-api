@@ -45,6 +45,7 @@ Route::group([ 'namespace' => 'Api' ], function () {
         Route::group([
             'prefix' => 'user/{user}/restroom',
         ], function () {
+            Route::get('/', 'RestroomController@index');
             Route::post('/', 'RestroomController@store');
         });
     });

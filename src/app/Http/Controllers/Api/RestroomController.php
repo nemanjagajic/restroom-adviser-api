@@ -18,6 +18,28 @@ class RestroomController extends Controller
     }
 
     /**
+     * @SWG\Get(
+     *   tags={"Restroom"},
+     *   path="/user/{user_id}/restroom",
+     *   summary="Add new restroom",
+     *   operationId="getRestrooms",
+     *   produces={"application/json"},
+     *
+     *   security={{"authorization_token":{}}},
+     *   @SWG\Response(response=200, description="Successful operation"),
+     *   @SWG\Response(response=401, description="Unauthorized"),
+     *   @SWG\Response(response=422, description="Validation failed"),
+     *   @SWG\Response(response=500, description="Internal server error")
+     * )
+     *
+     * Fetches all restrooms
+     * @return array
+     */
+    public function index() {
+        return $this->restroomService->getAll();
+    }
+
+    /**
      * @SWG\Post(
      *   tags={"Restroom"},
      *   path="/user/{user_id}/restroom",

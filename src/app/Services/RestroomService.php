@@ -15,4 +15,8 @@ class RestroomService
             $inputData
         ));
     }
+
+    public function getAll() {
+        return Restroom::all();
+    }
 }
