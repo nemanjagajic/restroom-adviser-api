@@ -41,5 +41,11 @@ Route::group([ 'namespace' => 'Api' ], function () {
             Route::post('change-password', 'UserController@changePassword');
             Route::post('/', 'UserController@updateProfile');
         });
+
+        Route::group([
+            'prefix' => 'user/{user}/restroom',
+        ], function () {
+            Route::post('/', 'RestroomController@store');
+        });
     });
 });
