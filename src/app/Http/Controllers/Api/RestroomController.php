@@ -97,7 +97,7 @@ class RestroomController extends Controller
      */
     public function store(User $user, CreateRestroomRequest $restroomRequest): Restroom
     {
-        $inputData = $restroomRequest->all();
-        return $this->restroomService->create($user, $inputData);
+        $inputData = $restroomRequest->except('images');
+        return $this->restroomService->create($user, $inputData, $restroomRequest->only('images'));
     }
 }

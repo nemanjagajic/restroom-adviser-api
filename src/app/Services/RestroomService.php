@@ -3,17 +3,41 @@
 
 namespace App\Services;
 
+use App\Constants\RestroomConstants;
 use App\Models\User\User;
 use App\Models\Restroom;
+use App\Services\File\FilesService;
+use App\Types\File\CompressImage;
 
 class RestroomService
 {
-    public function create(User $user, array $inputData): Restroom
+    protected $filesService;
+
+    public function __construct(FilesService $filesService)
     {
-        return Restroom::create(array_merge(
+        $this->filesService = $filesService;
+    }
+
+    public function create(User $user, array $inputData, array $images): Restroom
+    {
+        $restroom = Restroom::create(array_merge(
             ['user_id' => $user->id],
             $inputData
         ));
+
+        foreach ($images['images'] as $image) {
+            $compressedImage = new CompressImage(
+                $image,
+                RestroomConstants::RESTROOM_IMAGE_WIDTH,
+                RestroomConstants::RESTROOM_IMAGE_HEIGHT
+            );
+            $this->filesService->compressAndSaveImage(
+                RestroomConstants::formatRestroomImagePath($restroom->id),
+                $compressedImage
+            );
+        }
+
+        return $restroom;
     }
 
     public function getAll() {

@@ -28,7 +28,8 @@ class CreateRestroomRequest extends FormRequest
             'description' => 'required|string',
             'latitude' => 'required',
             'longitude' => 'required',
-            'location_text' => 'required|string'
+            'location_text' => 'required|string',
+            'images' => 'array'
         ];
     }
 }
