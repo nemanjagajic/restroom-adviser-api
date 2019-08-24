@@ -25,18 +25,20 @@ class RestroomService {
             $inputData
         ));
 
-        foreach ($images['images'] as $image) {
-            $compressedImage = new CompressImage(
-                $image,
-                RestroomConstants::RESTROOM_IMAGE_WIDTH,
-                RestroomConstants::RESTROOM_IMAGE_HEIGHT
-            );
-            $path = $this->filesService->compressAndSaveImage(
-                RestroomConstants::formatRestroomImagePath($restroom->id),
-                $compressedImage
-            );
+        if ($images) {
+            foreach ($images['images'] as $image) {
+                $compressedImage = new CompressImage(
+                    $image,
+                    RestroomConstants::RESTROOM_IMAGE_WIDTH,
+                    RestroomConstants::RESTROOM_IMAGE_HEIGHT
+                );
+                $path = $this->filesService->compressAndSaveImage(
+                    RestroomConstants::formatRestroomImagePath($restroom->id),
+                    $compressedImage
+                );
 
-            $this->addImage($restroom->id, $path);
+                $this->addImage($restroom->id, $path);
+            }
         }
 
         return $restroom;
