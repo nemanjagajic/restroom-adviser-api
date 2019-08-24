@@ -4,13 +4,13 @@
 namespace App\Services;
 
 use App\Constants\RestroomConstants;
+use App\Models\RestroomImage;
 use App\Models\User\User;
 use App\Models\Restroom;
 use App\Services\File\FilesService;
 use App\Types\File\CompressImage;
 
-class RestroomService
-{
+class RestroomService {
     protected $filesService;
 
     public function __construct(FilesService $filesService)
@@ -31,16 +31,27 @@ class RestroomService
                 RestroomConstants::RESTROOM_IMAGE_WIDTH,
                 RestroomConstants::RESTROOM_IMAGE_HEIGHT
             );
-            $this->filesService->compressAndSaveImage(
+            $path = $this->filesService->compressAndSaveImage(
                 RestroomConstants::formatRestroomImagePath($restroom->id),
                 $compressedImage
             );
+
+            $this->addImage($restroom->id, $path);
         }
 
         return $restroom;
     }
 
-    public function getAll() {
-        return Restroom::all();
+    public function getAll()
+    {
+        return Restroom::with('images')->get();
+    }
+
+    public function addImage(int $restroomId, string $path)
+    {
+        RestroomImage::create([
+            'restroom_id' => $restroomId,
+            'path' => $path
+        ]);
     }
 }
