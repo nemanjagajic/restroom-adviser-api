@@ -17,7 +17,7 @@ class CreateRestroomsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->double('latitude');
             $table->double('longitude');
             $table->string('location_text');

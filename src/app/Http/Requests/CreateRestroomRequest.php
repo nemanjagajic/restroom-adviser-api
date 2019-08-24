@@ -25,7 +25,7 @@ class CreateRestroomRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'latitude' => 'required',
             'longitude' => 'required',
             'location_text' => 'required|string',
