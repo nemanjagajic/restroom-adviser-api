@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Constants\RestroomConstants;
+use App\Models\RestroomComment;
 use App\Models\RestroomImage;
 use App\Models\User\User;
 use App\Models\Restroom;
@@ -54,6 +55,15 @@ class RestroomService {
         RestroomImage::create([
             'restroom_id' => $restroomId,
             'path' => $path
+        ]);
+    }
+
+    public function addComment(int $userId, int $restroomId, string $content): RestroomComment
+    {
+        return RestroomComment::create([
+            'user_id' => $userId,
+            'restroom_id' => $restroomId,
+            'content' => $content
         ]);
     }
 }
