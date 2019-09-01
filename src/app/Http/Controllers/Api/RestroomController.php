@@ -110,7 +110,7 @@ class RestroomController extends Controller
     /**
      * @SWG\Post(
      *   tags={"Restroom"},
-     *   path="/user/{user_id}/restroom/{restroom_id}/addComment",
+     *   path="/user/{user_id}/restroom/{restroom_id}/comments",
      *   summary="Add comment for restroom",
      *   operationId="addRestroomComment",
      *   produces={"application/json"},
@@ -155,5 +155,49 @@ class RestroomController extends Controller
         );
 
         return response($comment, 201);
+    }
+
+    /**
+     * @SWG\Get(
+     *   tags={"Restroom"},
+     *   path="/user/{user_id}/restroom/{restroom_id}/comments",
+     *   summary="Get comments for restroom",
+     *   operationId="getRestroomComments",
+     *   produces={"application/json"},
+     *   @SWG\Parameter(
+     *     name="user_id",
+     *     in="path",
+     *     description="ex. 1",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="restroom_id",
+     *     in="path",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   security={{"authorization_token":{}}},
+     *   @SWG\Response(response=200, description="Successful operation"),
+     *   @SWG\Response(response=401, description="Unauthorized"),
+     *   @SWG\Response(response=422, description="Validation failed"),
+     *   @SWG\Response(response=500, description="Internal server error")
+     * )
+     *
+     * Get comments for restroom
+     * @param User $user
+     * @param Restroom $restroom
+     * @return ResponseFactory|Response
+     */
+    public function getComments(User $user, Restroom $restroom)
+    {
+        $comments = $this->restroomService->getComments($restroom->id);
+
+        $commentsReversed = [];
+        foreach ($comments as $comment) {
+            array_unshift($commentsReversed, $comment);
+        }
+
+        return response($commentsReversed, 200);
     }
 }

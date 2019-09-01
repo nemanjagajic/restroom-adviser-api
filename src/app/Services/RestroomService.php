@@ -66,4 +66,9 @@ class RestroomService {
             'content' => $content
         ]);
     }
+
+    public function getComments(int $restroomId)
+    {
+        return RestroomComment::where('restroom_id', $restroomId)->with('user')->get();
+    }
 }

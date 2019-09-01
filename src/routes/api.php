@@ -47,7 +47,8 @@ Route::group([ 'namespace' => 'Api' ], function () {
         ], function () {
             Route::get('/', 'RestroomController@index');
             Route::post('/', 'RestroomController@store');
-            Route::post('/{restroom}/addComment', 'RestroomController@addComment');
+            Route::post('/{restroom}/comments', 'RestroomController@addComment');
+            Route::get('/{restroom}/comments', 'RestroomController@getComments');
         });
     });
 });
