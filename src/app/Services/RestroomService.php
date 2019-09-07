@@ -8,6 +8,7 @@ use App\Models\RestroomComment;
 use App\Models\RestroomImage;
 use App\Models\User\User;
 use App\Models\Restroom;
+use App\RestroomRating;
 use App\Services\File\FilesService;
 use App\Types\File\CompressImage;
 
@@ -69,6 +70,45 @@ class RestroomService {
 
     public function getComments(int $restroomId)
     {
-        return RestroomComment::where('restroom_id', $restroomId)->with('user')->get();
+        $comments =  RestroomComment::where('restroom_id', $restroomId)->with('user')->get();
+        $commentsReversed = [];
+        foreach ($comments as $comment) {
+            array_unshift($commentsReversed, $comment);
+        }
+
+        return $commentsReversed;
+    }
+
+    public function addRating(int $userId, int $restroomId, int $rating): ?RestroomRating
+    {
+        $foundRestroom = RestroomRating::where('user_id', $userId)
+            ->where('restroom_id', $restroomId)->first();
+
+        if ($foundRestroom) return null;
+
+        return RestroomRating::create([
+            'user_id' => $userId,
+            'restroom_id' => $restroomId,
+            'rating' => $rating
+        ]);
+    }
+
+    public function getRatings(int $restroomId)
+    {
+        $ratings = RestroomRating::where('restroom_id', $restroomId)->get();
+
+        $ratingsReversed = [];
+        $totalRating = 0;
+        $numberOfRatings = 0;
+        foreach ($ratings as $rating) {
+            $totalRating += $rating->rating;
+            $numberOfRatings++;
+            array_unshift($ratingsReversed, $rating);
+        }
+
+        return [
+            'rating' => $totalRating / $numberOfRatings,
+            'ratings' => $ratingsReversed
+        ];
     }
 }

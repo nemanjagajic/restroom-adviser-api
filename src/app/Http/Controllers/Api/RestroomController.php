@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateRestroomCommentRequest;
+use App\Http\Requests\CreateRestroomRatingRequest;
 use App\Http\Requests\CreateRestroomRequest;
 use App\Models\Restroom;
 use App\Models\RestroomComment;
@@ -192,12 +193,98 @@ class RestroomController extends Controller
     public function getComments(User $user, Restroom $restroom)
     {
         $comments = $this->restroomService->getComments($restroom->id);
+        return response($comments, 200);
+    }
 
-        $commentsReversed = [];
-        foreach ($comments as $comment) {
-            array_unshift($commentsReversed, $comment);
+    /**
+     * @SWG\Post(
+     *   tags={"Restroom"},
+     *   path="/user/{user_id}/restroom/{restroom_id}/ratings",
+     *   summary="Add rating for restroom",
+     *   operationId="addRestroomRating",
+     *   produces={"application/json"},
+     *   @SWG\Parameter(
+     *     name="user_id",
+     *     in="path",
+     *     description="ex. 1",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="restroom_id",
+     *     in="path",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="rating",
+     *     in="formData",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   security={{"authorization_token":{}}},
+     *   @SWG\Response(response=201, description="Successful operation"),
+     *   @SWG\Response(response=401, description="Unauthorized"),
+     *   @SWG\Response(response=422, description="Validation failed"),
+     *   @SWG\Response(response=500, description="Internal server error")
+     * )
+     *
+     * Adds rating for restroom
+     * @param User $user
+     * @param Restroom $restroom
+     * @param CreateRestroomRatingRequest $request
+     * @return ResponseFactory|Response
+     */
+    public function addRating(User $user, Restroom $restroom, CreateRestroomRatingRequest $request)
+    {
+        $rating = $this->restroomService->addRating(
+            $user->id,
+            $restroom->id,
+            $request->input('rating')
+        );
+
+        if (!$rating) {
+            return response('You have already rated this restaurant', 403);
         }
 
-        return response($commentsReversed, 200);
+        return response($rating, 201);
+    }
+
+    /**
+     * @SWG\Get(
+     *   tags={"Restroom"},
+     *   path="/user/{user_id}/restroom/{restroom_id}/ratings",
+     *   summary="Get ratings for restroom",
+     *   operationId="getRestroomRatings",
+     *   produces={"application/json"},
+     *   @SWG\Parameter(
+     *     name="user_id",
+     *     in="path",
+     *     description="ex. 1",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="restroom_id",
+     *     in="path",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   security={{"authorization_token":{}}},
+     *   @SWG\Response(response=200, description="Successful operation"),
+     *   @SWG\Response(response=401, description="Unauthorized"),
+     *   @SWG\Response(response=422, description="Validation failed"),
+     *   @SWG\Response(response=500, description="Internal server error")
+     * )
+     *
+     * Get ratings for restroom
+     * @param User $user
+     * @param Restroom $restroom
+     * @return ResponseFactory|Response
+     */
+    public function getRatings(User $user, Restroom $restroom)
+    {
+        $ratings = $this->restroomService->getRatings($restroom->id);
+        return response($ratings, 200);
     }
 }
