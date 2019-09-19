@@ -106,8 +106,9 @@ class RestroomService {
             array_unshift($ratingsReversed, $rating);
         }
 
+
         return [
-            'rating' => $totalRating / $numberOfRatings,
+            'rating' => $numberOfRatings !== 0 ? $totalRating / $numberOfRatings : 0,
             'ratings' => $ratingsReversed
         ];
     }
