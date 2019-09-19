@@ -109,7 +109,9 @@ class RestroomService {
 
         return [
             'rating' => $numberOfRatings !== 0 ? $totalRating / $numberOfRatings : 0,
-            'ratings' => $ratingsReversed
+            'ratings' => $ratingsReversed,
+            'totalRating' => $totalRating,
+            'numberOfRatings' => $numberOfRatings
         ];
     }
 }
