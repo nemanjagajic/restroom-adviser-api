@@ -79,12 +79,15 @@ class RestroomService {
         return $commentsReversed;
     }
 
-    public function addRating(int $userId, int $restroomId, int $rating): ?RestroomRating
+    public function addRating(int $userId, int $restroomId, int $rating): RestroomRating
     {
         $foundRestroom = RestroomRating::where('user_id', $userId)
             ->where('restroom_id', $restroomId)->first();
 
-        if ($foundRestroom) return null;
+        if ($foundRestroom) {
+            $foundRestroom->update(['rating' => $rating]);
+            return $foundRestroom;
+        };
 
         return RestroomRating::create([
             'user_id' => $userId,
@@ -93,7 +96,7 @@ class RestroomService {
         ]);
     }
 
-    public function getRatings(int $restroomId)
+    public function getRatings(int $userId, int $restroomId)
     {
         $ratings = RestroomRating::where('restroom_id', $restroomId)->get();
 
@@ -106,12 +109,18 @@ class RestroomService {
             array_unshift($ratingsReversed, $rating);
         }
 
+        $myRating = 0;
+        $myRatingInfo = RestroomRating::where('user_id', $userId)->where('restroom_id', $restroomId)->get();
+        if (sizeof($myRatingInfo) !== 0) {
+            $myRating = $myRatingInfo[0]->rating;
+        }
 
         return [
             'rating' => $numberOfRatings !== 0 ? $totalRating / $numberOfRatings : 0,
             'ratings' => $ratingsReversed,
             'totalRating' => $totalRating,
-            'numberOfRatings' => $numberOfRatings
+            'numberOfRatings' => $numberOfRatings,
+            'myRating' => $myRating
         ];
     }
 }

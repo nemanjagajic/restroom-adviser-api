@@ -284,7 +284,7 @@ class RestroomController extends Controller
      */
     public function getRatings(User $user, Restroom $restroom)
     {
-        $ratings = $this->restroomService->getRatings($restroom->id);
+        $ratings = $this->restroomService->getRatings($user->id, $restroom->id);
         return response($ratings, 200);
     }
 }
