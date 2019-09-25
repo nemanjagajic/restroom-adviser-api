@@ -47,6 +47,7 @@ Route::group([ 'namespace' => 'Api' ], function () {
         ], function () {
             Route::get('/', 'RestroomController@index');
             Route::post('/', 'RestroomController@store');
+            Route::get('/feedRestrooms', 'RestroomController@getFeedRestrooms');
             Route::post('/{restroom}/comments', 'RestroomController@addComment');
             Route::get('/{restroom}/comments', 'RestroomController@getComments');
             Route::post('/{restroom}/ratings', 'RestroomController@addRating');

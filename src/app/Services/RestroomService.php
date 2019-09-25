@@ -51,6 +51,11 @@ class RestroomService {
         return Restroom::with('images')->get();
     }
 
+    public function getAllFeedRestrooms($offset, $limit)
+    {
+        return Restroom::offset($offset)->limit($limit)->get();
+    }
+
     public function addImage(int $restroomId, string $path)
     {
         RestroomImage::create([

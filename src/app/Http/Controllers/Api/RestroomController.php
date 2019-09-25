@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateRestroomCommentRequest;
 use App\Http\Requests\CreateRestroomRatingRequest;
 use App\Http\Requests\CreateRestroomRequest;
+use App\Http\Requests\GetFeedRestroomsRequest;
 use App\Models\Restroom;
-use App\Models\RestroomComment;
 use App\Models\User\User;
 use App\Services\RestroomService;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -42,6 +42,58 @@ class RestroomController extends Controller
      */
     public function index() {
         return $this->restroomService->getAll();
+    }
+
+    /**
+     * @SWG\Get(
+     *   tags={"Restroom"},
+     *   path="/user/{user_id}/restroom/feedRestrooms",
+     *   summary="Get all restrooms for feed",
+     *   operationId="getFeedRestrooms",
+     *   produces={"application/json"},
+     *
+     *   @SWG\Parameter(
+     *     name="user_id",
+     *     in="path",
+     *     description="ex. 1",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="offset",
+     *     in="query",
+     *     required=true,
+     *     type="number"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="limit",
+     *     in="query",
+     *     required=true,
+     *     type="number"
+     *   ),
+     *
+     *   security={{"authorization_token":{}}},
+     *   @SWG\Response(response=200, description="Successful operation"),
+     *   @SWG\Response(response=401, description="Unauthorized"),
+     *   @SWG\Response(response=422, description="Validation failed"),
+     *   @SWG\Response(response=500, description="Internal server error")
+     * )
+     *
+     * Fetches all restrooms
+     * @param User $user
+     * @param GetFeedRestroomsRequest $request
+     * @return array
+     */
+    public function getFeedRestrooms(User $user, GetFeedRestroomsRequest $request) {
+        $offset = $request->input('offset');
+        $limit = $request->input('limit');
+
+        $response = [];
+        $restrooms = $this->restroomService->getAllFeedRestrooms($offset, $limit);
+        $response['restrooms'] = $restrooms;
+        $response['totalNumber'] = $this->restroomService->getAll()->count();
+
+        return response($response);
     }
 
     /**
