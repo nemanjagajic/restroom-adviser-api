@@ -12,4 +12,9 @@ class Restroom extends Model
     {
         return $this->hasMany('App\Models\RestroomImage');
     }
+
+    public function ratings()
+    {
+        return $this->hasMany('App\Models\RestroomRating');
+    }
 }

@@ -8,7 +8,7 @@ use App\Models\RestroomComment;
 use App\Models\RestroomImage;
 use App\Models\User\User;
 use App\Models\Restroom;
-use App\RestroomRating;
+use App\Models\RestroomRating;
 use App\Services\File\FilesService;
 use App\Types\File\CompressImage;
 
@@ -53,7 +53,24 @@ class RestroomService {
 
     public function getAllFeedRestrooms($offset, $limit)
     {
-        return Restroom::offset($offset)->limit($limit)->get();
+        $restroomsResponse = [];
+
+        $restrooms = Restroom::offset($offset)->limit($limit)->with(['images', 'ratings'])->get();
+        foreach ($restrooms as $restroom) {
+            info($restroom->images);
+            $newRestroom = new Restroom();
+            $newRestroom->id = $restroom->id;
+            $newRestroom->user_id = $restroom->user_id;
+            $newRestroom->name = $restroom->name;
+            $newRestroom->location_text = $restroom->location_text;
+            $newRestroom->rating = $this->calculateTotalRating($restroom->ratings);
+            $newRestroom->image = sizeof($restroom->images) > 0 ? $restroom->images[0] : null;
+            $newRestroom->created_at = $restroom->created_at;
+            $newRestroom->updated_at = $restroom->updated_at;
+            array_push($restroomsResponse, $newRestroom);
+        }
+
+        return $restroomsResponse;
     }
 
     public function addImage(int $restroomId, string $path)
@@ -126,6 +143,23 @@ class RestroomService {
             'totalRating' => $totalRating,
             'numberOfRatings' => $numberOfRatings,
             'myRating' => $myRating
+        ];
+    }
+
+    public function calculateTotalRating($ratings)
+    {
+        $totalRating = 0;
+        $numberOfRatings = 0;
+        foreach ($ratings as $rating) {
+            $totalRating += $rating->rating;
+            $numberOfRatings++;
+        }
+
+        $totalRating = $numberOfRatings !== 0 ? $totalRating / $numberOfRatings : 0;
+
+        return [
+            'totalRating' => $totalRating,
+            'numberOfRatings' => $numberOfRatings
         ];
     }
 }

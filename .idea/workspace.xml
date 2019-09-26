@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a94c69e7-2933-4df5-af52-ba119e7a3c60" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Models/Restroom.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Models/Restroom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/RestroomRating.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Models/RestroomRating.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Services/RestroomService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Services/RestroomService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="96" column="5" lean-forward="true" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
+            <state relative-caret-position="-1371">
+              <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
               <folding>
                 <element signature="e#44#80#0#PHP" expanded="true" />
               </folding>
@@ -33,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/Services/RestroomService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+            <state relative-caret-position="-897">
+              <caret line="61" column="45" lean-forward="true" selection-start-line="61" selection-start-column="45" selection-end-line="61" selection-end-column="45" />
               <folding>
                 <element signature="e#33#69#0#PHP" expanded="true" />
               </folding>
@@ -46,17 +46,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/Models/Restroom.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/Models/RestroomRating.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/storage/logs/laravel.log">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-159" />
+          </provider>
         </entry>
       </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>HEAD</find>
-      <find>&gt;&gt;&gt;</find>
-      <find>Model</find>
       <find>Mode</find>
       <find>{user</find>
       <find>'201</find>
@@ -84,10 +101,14 @@
       <find>query</find>
       <find>console.log</find>
       <find>console</find>
+      <find>with</find>
+      <find>with(</find>
+      <find>App\Restroo</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/app/Models/User</dir>
       <dir>$PROJECT_DIR$/src/app/Models</dir>
+      <dir>$PROJECT_DIR$/src/app</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -117,7 +138,6 @@
         <option value="$PROJECT_DIR$/src/app/Constants/RestroomConstants.php" />
         <option value="$PROJECT_DIR$/src/database/migrations/2019_08_24_095425_create_restroom_images_table.php" />
         <option value="$PROJECT_DIR$/src/app/Models/RestroomImage.php" />
-        <option value="$PROJECT_DIR$/src/app/Models/Restroom.php" />
         <option value="$PROJECT_DIR$/src/app/Http/Requests/CreateRestroomRequest.php" />
         <option value="$PROJECT_DIR$/src/database/migrations/2019_08_12_145821_create_restrooms_table.php" />
         <option value="$PROJECT_DIR$/src/app/Http/Requests/CreateRestroomCommentRequest.php" />
@@ -130,9 +150,11 @@
         <option value="$PROJECT_DIR$/src/app/Http/Requests/CreateRestroomRatingRequest.php" />
         <option value="$PROJECT_DIR$/src/routes/api.php" />
         <option value="$PROJECT_DIR$/src/app/Http/Requests/GetFeedRestroomsRequest.php" />
-        <option value="$PROJECT_DIR$/src/app/Services/RestroomService.php" />
-        <option value="$PROJECT_DIR$/src/storage/logs/laravel.log" />
         <option value="$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php" />
+        <option value="$PROJECT_DIR$/src/app/Models/RestroomRating.php" />
+        <option value="$PROJECT_DIR$/src/app/Models/Restroom.php" />
+        <option value="$PROJECT_DIR$/src/storage/logs/laravel.log" />
+        <option value="$PROJECT_DIR$/src/app/Services/RestroomService.php" />
       </list>
     </option>
   </component>
@@ -288,7 +310,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -339,10 +360,18 @@
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Requests" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="restroom-adviser-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="restroom-adviser-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -359,8 +388,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/Http/Controllers/Api" />
       <recent name="$PROJECT_DIR$/src/app/Models" />
+      <recent name="$PROJECT_DIR$/src/app/Http/Controllers/Api" />
       <recent name="$PROJECT_DIR$/src/app/Models/User" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
@@ -395,19 +424,20 @@
       <workItem from="1567869374309" duration="3788000" />
       <workItem from="1568908535649" duration="1949000" />
       <workItem from="1569350175038" duration="2591000" />
-      <workItem from="1569427635096" duration="2591000" />
+      <workItem from="1569427635096" duration="2967000" />
+      <workItem from="1569519132624" duration="3988000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45176000" />
+    <option name="totallyTimeSpent" value="49540000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2732475" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.27682403" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -584,13 +614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Models/Restroom.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Models/User/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -652,13 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/RestroomRating.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Http/Requests/CreateRestroomRatingRequest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -697,25 +713,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/storage/logs/laravel.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Services/RestroomService.php">
+    <entry file="file://$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+        <state relative-caret-position="-1371">
+          <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
           <folding>
-            <element signature="e#33#69#0#PHP" expanded="true" />
+            <element signature="e#44#80#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php">
+    <entry file="file://$PROJECT_DIR$/src/storage/logs/laravel.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="96" column="5" lean-forward="true" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
+        <state relative-caret-position="-159" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Models/Restroom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Models/RestroomRating.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Services/RestroomService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-897">
+          <caret line="61" column="45" lean-forward="true" selection-start-line="61" selection-start-column="45" selection-end-line="61" selection-end-column="45" />
           <folding>
-            <element signature="e#44#80#0#PHP" expanded="true" />
+            <element signature="e#33#69#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
