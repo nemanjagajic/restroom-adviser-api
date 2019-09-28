@@ -71,6 +71,12 @@ class RestroomController extends Controller
      *     required=true,
      *     type="number"
      *   ),
+     *   @SWG\Parameter(
+     *     name="searchValue",
+     *     in="query",
+     *     required=false,
+     *     type="string"
+     *   ),
      *
      *   security={{"authorization_token":{}}},
      *   @SWG\Response(response=200, description="Successful operation"),
@@ -87,11 +93,12 @@ class RestroomController extends Controller
     public function getFeedRestrooms(User $user, GetFeedRestroomsRequest $request) {
         $offset = $request->input('offset');
         $limit = $request->input('limit');
+        $searchValue = $request->input('searchValue');
 
         $response = [];
-        $restrooms = $this->restroomService->getAllFeedRestrooms($offset, $limit);
+        $restrooms = $this->restroomService->getAllFeedRestrooms($offset, $limit, $searchValue);
         $response['restrooms'] = $restrooms;
-        $response['totalNumber'] = $this->restroomService->getAll()->count();
+        $response['totalNumber'] = $this->restroomService->getTotalCount($searchValue);
 
         return response($response);
     }

@@ -51,13 +51,19 @@ class RestroomService {
         return Restroom::with('images')->get();
     }
 
-    public function getAllFeedRestrooms($offset, $limit)
+    public function getAllFeedRestrooms($offset, $limit, $searchValue)
     {
         $restroomsResponse = [];
 
-        $restrooms = Restroom::offset($offset)->limit($limit)->with(['images', 'ratings'])->get();
+        if ($searchValue !== null) {
+            $restrooms = Restroom::where('name', 'like', '%' . $searchValue . '%')
+                ->orWhere('location_text', 'like', '%' . $searchValue . '%')
+                ->offset($offset)->limit($limit)->with(['images', 'ratings'])->get();
+        } else {
+            $restrooms = Restroom::offset($offset)->limit($limit)->with(['images', 'ratings'])->get();
+        }
+
         foreach ($restrooms as $restroom) {
-            info($restroom->images);
             $newRestroom = new Restroom();
             $newRestroom->id = $restroom->id;
             $newRestroom->user_id = $restroom->user_id;
@@ -71,6 +77,18 @@ class RestroomService {
         }
 
         return $restroomsResponse;
+    }
+
+    public function getTotalCount($searchValue = null)
+    {
+        if ($searchValue !== null) {
+            return Restroom::where('name', 'like', '%' . $searchValue . '%')
+                ->orWhere('location_text', 'like', '%' . $searchValue . '%')
+                ->get()
+                ->count();
+        } else {
+            return Restroom::get()->count();
+        }
     }
 
     public function addImage(int $restroomId, string $path)

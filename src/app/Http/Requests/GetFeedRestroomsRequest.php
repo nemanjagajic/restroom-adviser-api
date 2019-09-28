@@ -25,7 +25,8 @@ class GetFeedRestroomsRequest extends FormRequest
     {
         return [
             'offset' => 'required|integer',
-            'limit' => 'nullable|integer',
+            'limit' => 'required|integer',
+            'searchValue' => 'nullable'
         ];
     }
 }
