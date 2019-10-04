@@ -51,18 +51,32 @@ class RestroomService {
         return Restroom::with('images')->get();
     }
 
-    public function getAllFeedRestrooms($offset, $limit, $searchValue)
+    public function getAllFeedRestrooms($user, $offset, $limit, $searchValue, $minimalRating)
     {
-        $restroomsResponse = [];
-
-        if ($searchValue !== null) {
-            $restrooms = Restroom::where('name', 'like', '%' . $searchValue . '%')
-                ->orWhere('location_text', 'like', '%' . $searchValue . '%')
-                ->offset($offset)->limit($limit)->with(['images', 'ratings'])->get();
+        // TODO Clean this mess and write it better
+        if ($minimalRating !== null) {
+            if ($searchValue !== null) {
+                $restrooms = Restroom::where('name', 'like', '%' . $searchValue . '%')
+                    ->orWhere('location_text', 'like', '%' . $searchValue . '%')->get();
+            } else {
+                $restrooms = Restroom::with(['images', 'ratings'])->get();
+            }
+            foreach ($restrooms as $key => $restroom) {
+                if ($this->getRatings($user->id, $restroom->id)['rating'] < $minimalRating) {
+                    unset($restrooms[$key]);
+                }
+            }
         } else {
-            $restrooms = Restroom::offset($offset)->limit($limit)->with(['images', 'ratings'])->get();
+            if ($searchValue !== null) {
+                $restrooms = Restroom::where('name', 'like', '%' . $searchValue . '%')
+                    ->orWhere('location_text', 'like', '%' . $searchValue . '%')
+                    ->offset($offset)->limit($limit)->with(['images', 'ratings'])->get();
+            } else {
+                $restrooms = Restroom::offset($offset)->limit($limit)->with(['images', 'ratings'])->get();
+            }
         }
 
+        $restroomsResponse = [];
         foreach ($restrooms as $restroom) {
             $newRestroom = new Restroom();
             $newRestroom->id = $restroom->id;
@@ -82,13 +96,14 @@ class RestroomService {
     public function getTotalCount($searchValue = null)
     {
         if ($searchValue !== null) {
-            return Restroom::where('name', 'like', '%' . $searchValue . '%')
+            $restrooms = Restroom::where('name', 'like', '%' . $searchValue . '%')
                 ->orWhere('location_text', 'like', '%' . $searchValue . '%')
-                ->get()
-                ->count();
+                ->get();
         } else {
-            return Restroom::get()->count();
+            $restrooms = Restroom::get();
         }
+
+        return sizeof($restrooms);
     }
 
     public function addImage(int $restroomId, string $path)

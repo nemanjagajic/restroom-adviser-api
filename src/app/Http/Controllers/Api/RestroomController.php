@@ -77,6 +77,12 @@ class RestroomController extends Controller
      *     required=false,
      *     type="string"
      *   ),
+     *   @SWG\Parameter(
+     *     name="minimalRating",
+     *     in="query",
+     *     required=false,
+     *     type="number"
+     *   ),
      *
      *   security={{"authorization_token":{}}},
      *   @SWG\Response(response=200, description="Successful operation"),
@@ -94,11 +100,16 @@ class RestroomController extends Controller
         $offset = $request->input('offset');
         $limit = $request->input('limit');
         $searchValue = $request->input('searchValue');
+        $minimalRating = $request->input('minimalRating');
 
         $response = [];
-        $restrooms = $this->restroomService->getAllFeedRestrooms($offset, $limit, $searchValue);
+        $restrooms = $this->restroomService->getAllFeedRestrooms($user, $offset, $limit, $searchValue, $minimalRating);
         $response['restrooms'] = $restrooms;
-        $response['totalNumber'] = $this->restroomService->getTotalCount($searchValue);
+        if ($minimalRating) {
+            $response['totalNumber'] = sizeof($restrooms);
+        } else {
+            $response['totalNumber'] = $this->restroomService->getTotalCount($searchValue);
+        }
 
         return response($response);
     }

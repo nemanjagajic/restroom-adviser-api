@@ -26,7 +26,8 @@ class GetFeedRestroomsRequest extends FormRequest
         return [
             'offset' => 'required|integer',
             'limit' => 'required|integer',
-            'searchValue' => 'nullable'
+            'searchValue' => 'nullable',
+            'minimalRating' => 'nullable'
         ];
     }
 }
