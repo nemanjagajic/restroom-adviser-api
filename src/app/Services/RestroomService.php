@@ -53,28 +53,20 @@ class RestroomService {
 
     public function getAllFeedRestrooms($user, $offset, $limit, $searchValue, $minimalRating)
     {
-        // TODO Clean this mess and write it better
-        if ($minimalRating !== null) {
-            if ($searchValue !== null) {
-                $restrooms = Restroom::where('name', 'like', '%' . $searchValue . '%')
-                    ->orWhere('location_text', 'like', '%' . $searchValue . '%')->get();
-            } else {
-                $restrooms = Restroom::with(['images', 'ratings'])->get();
-            }
-            foreach ($restrooms as $key => $restroom) {
-                if ($this->getRatings($user->id, $restroom->id)['rating'] < $minimalRating) {
-                    unset($restrooms[$key]);
-                }
-            }
-        } else {
-            if ($searchValue !== null) {
-                $restrooms = Restroom::where('name', 'like', '%' . $searchValue . '%')
-                    ->orWhere('location_text', 'like', '%' . $searchValue . '%')
-                    ->offset($offset)->limit($limit)->with(['images', 'ratings'])->get();
-            } else {
-                $restrooms = Restroom::offset($offset)->limit($limit)->with(['images', 'ratings'])->get();
-            }
-        }
+        if ($searchValue === null) $searchValue = '';
+        if ($minimalRating === null) $minimalRating = 0;
+
+        $restrooms = Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id')
+            ->select('restrooms.*')
+            ->groupBy('restrooms.id')
+            ->havingRaw(
+                '? = 0 OR COUNT(restroom_ratings.id) > 0 AND SUM(rating) / COUNT(restroom_ratings.id) >= ?',
+                [$minimalRating, $minimalRating]
+            )
+            ->where('name', 'like', '%' . $searchValue . '%')
+            ->orWhere('location_text', 'like', '%' . $searchValue . '%')
+            ->offset($offset)->limit($limit)->with(['images', 'ratings'])
+            ->get();
 
         $restroomsResponse = [];
         foreach ($restrooms as $restroom) {
@@ -93,17 +85,22 @@ class RestroomService {
         return $restroomsResponse;
     }
 
-    public function getTotalCount($searchValue = null)
+    public function getTotalCount($searchValue, $minimalRating)
     {
-        if ($searchValue !== null) {
-            $restrooms = Restroom::where('name', 'like', '%' . $searchValue . '%')
-                ->orWhere('location_text', 'like', '%' . $searchValue . '%')
-                ->get();
-        } else {
-            $restrooms = Restroom::get();
-        }
+        if ($searchValue === null) $searchValue = '';
+        if ($minimalRating === null) $minimalRating = 0;
 
-        return sizeof($restrooms);
+        return Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id')
+            ->select('restrooms.*')
+            ->groupBy('restrooms.id')
+            ->havingRaw(
+                '? = 0 OR COUNT(restroom_ratings.id) > 0 AND SUM(rating) / COUNT(restroom_ratings.id) >= ?',
+                [$minimalRating, $minimalRating]
+            )
+            ->where('name', 'like', '%' . $searchValue . '%')
+            ->orWhere('location_text', 'like', '%' . $searchValue . '%')
+            ->get()
+            ->count();
     }
 
     public function addImage(int $restroomId, string $path)

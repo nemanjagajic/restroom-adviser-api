@@ -108,7 +108,7 @@ class RestroomController extends Controller
         if ($minimalRating) {
             $response['totalNumber'] = sizeof($restrooms);
         } else {
-            $response['totalNumber'] = $this->restroomService->getTotalCount($searchValue);
+            $response['totalNumber'] = $this->restroomService->getTotalCount($searchValue, $minimalRating);
         }
 
         return response($response);
