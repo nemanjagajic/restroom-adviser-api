@@ -12,9 +12,9 @@ class RestroomConstants
 
     const RESTROOM_EXTENSION = 'jpg';
 
-    const RESTROOM_IMAGE_WIDTH = 300;
+    const RESTROOM_IMAGE_WIDTH = 1000;
 
-    const RESTROOM_IMAGE_HEIGHT = 300;
+    const RESTROOM_IMAGE_HEIGHT = 1000;
 
     /**
      * Format the avatar storage path
