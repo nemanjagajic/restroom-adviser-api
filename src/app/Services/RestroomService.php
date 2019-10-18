@@ -74,6 +74,8 @@ class RestroomService {
             $newRestroom->id = $restroom->id;
             $newRestroom->user_id = $restroom->user_id;
             $newRestroom->name = $restroom->name;
+            $newRestroom->latitude = $restroom->latitude;
+            $newRestroom->longitude = $restroom->longitude;
             $newRestroom->location_text = $restroom->location_text;
             $newRestroom->rating = $this->calculateTotalRating($restroom->ratings);
             $newRestroom->image = sizeof($restroom->images) > 0 ? $restroom->images[0] : null;
