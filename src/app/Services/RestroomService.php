@@ -150,7 +150,7 @@ class RestroomService {
         ]);
     }
 
-    public function getRatings(int $userId, int $restroomId)
+    public function getRatings(int $userId, int $restroomId, $includeRatings)
     {
         $ratings = RestroomRating::where('restroom_id', $restroomId)->get();
 
@@ -169,6 +169,15 @@ class RestroomService {
             $myRating = $myRatingInfo[0]->rating;
         }
 
+        if (!$includeRatings) {
+            return [
+                'rating' => $numberOfRatings !== 0 ? $totalRating / $numberOfRatings : 0,
+                'totalRating' => $totalRating,
+                'numberOfRatings' => $numberOfRatings,
+                'myRating' => $myRating
+            ];
+        }
+
         return [
             'rating' => $numberOfRatings !== 0 ? $totalRating / $numberOfRatings : 0,
             'ratings' => $ratingsReversed,
@@ -177,6 +186,7 @@ class RestroomService {
             'myRating' => $myRating
         ];
     }
+
 
     public function calculateTotalRating($ratings)
     {

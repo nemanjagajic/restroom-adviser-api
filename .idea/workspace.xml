@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Services/RestroomService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Services/RestroomService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/database.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="107" column="29" lean-forward="true" selection-start-line="107" selection-start-column="29" selection-end-line="107" selection-end-column="29" />
+            <state relative-caret-position="267">
+              <caret line="173" column="45" lean-forward="true" selection-start-line="173" selection-start-column="45" selection-end-line="173" selection-end-column="45" />
               <folding>
                 <element signature="e#44#80#0#PHP" expanded="true" />
               </folding>
@@ -33,14 +32,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/Services/RestroomService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="72" column="42" lean-forward="true" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
+            <state relative-caret-position="329">
+              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
               <folding>
                 <element signature="e#33#69#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/Models/Restroom.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -54,28 +62,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>text</find>
-      <find>Add new restroom</find>
-      <find>User</find>
-      <find>Models</find>
-      <find>return Redis</find>
-      <find>cache</find>
-      <find>CACHE_DRIVER</find>
-      <find>.info</find>
-      <find>query</find>
-      <find>console.log</find>
-      <find>console</find>
-      <find>with</find>
-      <find>with(</find>
-      <find>App\Restroo</find>
-      <find>$info</find>
-      <find>info</find>
       <find>totalNumbe</find>
       <find>totalN</find>
       <find>totalNumber</find>
       <find>getTotal</find>
       <find>getRa</find>
-      <find>getRatings</find>
       <find>i</find>
       <find>info(</find>
       <find>&lt;</find>
@@ -84,6 +75,23 @@
       <find>stricg</find>
       <find>$user</find>
       <find>Restroomservice</find>
+      <find>getRest</find>
+      <find>getFeedRestrooms</find>
+      <find>upload_</find>
+      <find>max</find>
+      <find>upload</find>
+      <find>post_max_size</find>
+      <find>upload_max_filesize</find>
+      <find>updaterules</find>
+      <find>compress</find>
+      <find>compressAndSaveImage</find>
+      <find>totalRating</find>
+      <find>getRatings</find>
+      <find>query</find>
+      <find>ratings</find>
+      <find>bool</find>
+      <find>createR</find>
+      <find>create</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/app/Models/User</dir>
@@ -111,11 +119,9 @@
         <option value="$PROJECT_DIR$/src/app/Models/User.php" />
         <option value="$PROJECT_DIR$/src/app/Models/User/User.php" />
         <option value="$PROJECT_DIR$/src/database/migrations/2014_10_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/src/app/Services/File/FilesService.php" />
         <option value="$PROJECT_DIR$/src/app/Constants/Constants.php" />
         <option value="$PROJECT_DIR$/src/app/Constants/PathConstants.php" />
         <option value="$PROJECT_DIR$/src/app/Constants/UserConstants.php" />
-        <option value="$PROJECT_DIR$/src/app/Constants/RestroomConstants.php" />
         <option value="$PROJECT_DIR$/src/database/migrations/2019_08_24_095425_create_restroom_images_table.php" />
         <option value="$PROJECT_DIR$/src/app/Models/RestroomImage.php" />
         <option value="$PROJECT_DIR$/src/app/Http/Requests/CreateRestroomRequest.php" />
@@ -133,9 +139,14 @@
         <option value="$PROJECT_DIR$/src/app/Models/Restroom.php" />
         <option value="$PROJECT_DIR$/src/app/Http/Requests/GetFeedRestroomsRequest.php" />
         <option value="$PROJECT_DIR$/src/config/database.php" />
+        <option value="$PROJECT_DIR$/src/app/Services/File/FilesService.php" />
+        <option value="$PROJECT_DIR$/src/public/web.config" />
+        <option value="$PROJECT_DIR$/docker/custom.ini" />
+        <option value="$PROJECT_DIR$/docker/vhost.template" />
+        <option value="$PROJECT_DIR$/src/app/Constants/RestroomConstants.php" />
         <option value="$PROJECT_DIR$/src/storage/logs/laravel.log" />
-        <option value="$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php" />
         <option value="$PROJECT_DIR$/src/app/Services/RestroomService.php" />
+        <option value="$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php" />
       </list>
     </option>
   </component>
@@ -303,64 +314,6 @@
               <item name="restroom-adviser-api" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="restroom-adviser-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restroom-adviser-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restroom-adviser-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restroom-adviser-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restroom-adviser-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restroom-adviser-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restroom-adviser-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restroom-adviser-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restroom-adviser-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restroom-adviser-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Requests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restroom-adviser-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restroom-adviser-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restroom-adviser-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restroom-adviser-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="restroom-adviser-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="restroom-adviser-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -423,19 +376,24 @@
       <workItem from="1569589959483" duration="35000" />
       <workItem from="1569671254917" duration="3344000" />
       <workItem from="1570203459741" duration="7100000" />
-      <workItem from="1570643614588" duration="7514000" />
+      <workItem from="1570643614588" duration="7766000" />
+      <workItem from="1570810471210" duration="2373000" />
+      <workItem from="1571077620024" duration="3835000" />
+      <workItem from="1571159739217" duration="637000" />
+      <workItem from="1571341948551" duration="1800000" />
+      <workItem from="1571576012324" duration="3238000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68056000" />
+    <option name="totallyTimeSpent" value="80191000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.26609442" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.26466382" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -464,83 +422,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/bootstrap/app.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Services/Auth/Social/FacebookAuthService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#45#70#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/composer.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="3719" column="72" selection-start-line="3719" selection-start-column="72" selection-end-line="3719" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/.env.example">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Http/Controllers/Api/Auth/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding>
-            <element signature="e#49#90#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Http/Controllers/Api/User/ForgotPasswordController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Http/Requests/User/UserCreateRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Http/Controllers/Api/User/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="49" column="11" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
-          <folding>
-            <element signature="e#49#85#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Constants/PathConstants.php" />
-    <entry file="file://$PROJECT_DIR$/src/app/Constants/Constants.php" />
-    <entry file="file://$PROJECT_DIR$/src/vendor/mockery/mockery/library/Mockery/Container.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/storage/app/public/users/1/lQRuC3O4wYgDpSfB.jpg" />
     <entry file="file://$PROJECT_DIR$/src/storage/app/public/users/1/HQfBuXUfUTm4gu8X.jpg" />
     <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/37/eXKDx1KgJkbvDSfJ.jpg" />
     <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/37/E7jRSG5xleH1du3x.jpg" />
@@ -556,23 +437,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/40/DMlNua6ipxgb90bm.jpg" />
     <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/40/0eONi2OuoHME4I4K.jpg" />
-    <entry file="file://$PROJECT_DIR$/src/app/Services/File/FilesService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding>
-            <element signature="e#37#88#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Constants/RestroomConstants.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Services/User/UserService.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="708">
@@ -697,13 +561,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Models/Restroom.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Models/RestroomRating.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -725,25 +582,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/storage/logs/laravel.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/meta/.phpstorm.meta.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="107" column="29" lean-forward="true" selection-start-line="107" selection-start-column="29" selection-end-line="107" selection-end-column="29" />
+        <state relative-caret-position="6075">
+          <caret line="405" column="22" selection-start-line="405" selection-start-column="9" selection-end-line="405" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/init">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/51/3cWJA92QvXe8eDQk.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/52/dvm20M9Z34gf8KYK.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/6/1tTiqXshaaLuJoOy.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Constants/RestroomConstants.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/46/zriTKHLOr2IHMwah.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/46/vV4bm9ufvi0WMB0g.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/46/S2XiaVQ7aNeS2Vmf.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/46/eAB0QVHex1e0J7yY.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/app/public/restrooms/46/BSDgwuxdfj9otT7Z.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Services/File/FilesService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
           <folding>
-            <element signature="e#44#80#0#PHP" expanded="true" />
+            <element signature="e#37#88#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docker/vhost.template">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker/custom.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="52" selection-start-column="52" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/web.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Models/Restroom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/logs/laravel.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Services/RestroomService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="72" column="42" lean-forward="true" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
+        <state relative-caret-position="329">
+          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
           <folding>
             <element signature="e#33#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="173" column="45" lean-forward="true" selection-start-line="173" selection-start-column="45" selection-end-line="173" selection-end-column="45" />
+          <folding>
+            <element signature="e#44#80#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

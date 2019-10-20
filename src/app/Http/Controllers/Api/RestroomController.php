@@ -11,6 +11,7 @@ use App\Models\Restroom;
 use App\Models\User\User;
 use App\Services\RestroomService;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class RestroomController extends Controller
@@ -174,6 +175,7 @@ class RestroomController extends Controller
     {
         $inputData = $restroomRequest->except('images');
         $restroom = $this->restroomService->create($user, $inputData, $restroomRequest->only('images'));
+        info($restroom);
 
         return response($restroom, 201);
     }
@@ -340,6 +342,12 @@ class RestroomController extends Controller
      *     required=true,
      *     type="integer"
      *   ),
+     *   @SWG\Parameter(
+     *     name="includeRatings",
+     *     in="query",
+     *     required=false,
+     *     type="bool"
+     *   ),
      *   security={{"authorization_token":{}}},
      *   @SWG\Response(response=200, description="Successful operation"),
      *   @SWG\Response(response=401, description="Unauthorized"),
@@ -350,11 +358,13 @@ class RestroomController extends Controller
      * Get ratings for restroom
      * @param User $user
      * @param Restroom $restroom
+     * @param Request $request
      * @return ResponseFactory|Response
      */
-    public function getRatings(User $user, Restroom $restroom)
+    public function getRatings(User $user, Restroom $restroom, Request $request)
     {
-        $ratings = $this->restroomService->getRatings($user->id, $restroom->id);
+        $includeRatings = $request->has('includeRatings');
+        $ratings = $this->restroomService->getRatings($user->id, $restroom->id, $includeRatings);
         return response($ratings, 200);
     }
 }
