@@ -250,6 +250,18 @@ class RestroomController extends Controller
      *     required=true,
      *     type="integer"
      *   ),
+     *   @SWG\Parameter(
+     *     name="offset",
+     *     in="query",
+     *     required=true,
+     *     type="number"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="limit",
+     *     in="query",
+     *     required=true,
+     *     type="number"
+     *   ),
      *   security={{"authorization_token":{}}},
      *   @SWG\Response(response=200, description="Successful operation"),
      *   @SWG\Response(response=401, description="Unauthorized"),
@@ -262,9 +274,11 @@ class RestroomController extends Controller
      * @param Restroom $restroom
      * @return ResponseFactory|Response
      */
-    public function getComments(User $user, Restroom $restroom)
+    public function getComments(User $user, Restroom $restroom, Request $request)
     {
-        $comments = $this->restroomService->getComments($restroom->id);
+        $offset = $request->input('offset');
+        $limit = $request->input('limit');
+        $comments = $this->restroomService->getComments($restroom->id, $offset, $limit);
         return response($comments, 200);
     }
 

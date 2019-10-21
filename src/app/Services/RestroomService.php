@@ -105,6 +105,7 @@ class RestroomService {
             ->count();
     }
 
+
     public function addImage(int $restroomId, string $path)
     {
         RestroomImage::create([
@@ -122,15 +123,18 @@ class RestroomService {
         ]);
     }
 
-    public function getComments(int $restroomId)
+    public function getComments(int $restroomId, $offset, $limit)
     {
-        $comments =  RestroomComment::where('restroom_id', $restroomId)->with('user')->get();
-        $commentsReversed = [];
-        foreach ($comments as $comment) {
-            array_unshift($commentsReversed, $comment);
-        }
+        $comments =  RestroomComment::where('restroom_id', $restroomId)
+            ->with('user')
+            ->orderBy('created_at', 'desc')
+            ->offset($offset)->limit($limit)
+            ->get();
 
-        return $commentsReversed;
+        return [
+            'comments' => $comments,
+            'numberOfComments' => RestroomComment::where('restroom_id', $restroomId)->get()->count()
+        ];
     }
 
     public function addRating(int $userId, int $restroomId, int $rating): RestroomRating
