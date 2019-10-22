@@ -159,6 +159,12 @@ class RestroomController extends Controller
      *     required=true,
      *     type="string"
      *   ),
+     *   @SWG\Parameter(
+     *     name="working_hours",
+     *     in="formData",
+     *     required=false,
+     *     type="string"
+     *   ),
      *   security={{"authorization_token":{}}},
      *   @SWG\Response(response=201, description="Successful operation"),
      *   @SWG\Response(response=401, description="Unauthorized"),
