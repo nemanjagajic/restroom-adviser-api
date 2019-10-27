@@ -51,20 +51,27 @@ class RestroomService {
         return Restroom::with('images')->get();
     }
 
-    public function getAllFeedRestrooms($user, $offset, $limit, $searchValue, $minimalRating)
+    public function getAllFeedRestrooms($user, $offset, $limit, $searchValue, $minimalRating, $onlyMy)
     {
         if ($searchValue === null) $searchValue = '';
         if ($minimalRating === null) $minimalRating = 0;
 
-        $restrooms = Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id')
+        $query = Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id');
+        if ($onlyMy === 'true') {
+            $query->where('restrooms.user_id', $user->id);
+        }
+
+        $restrooms = $query
             ->select('restrooms.*')
             ->groupBy('restrooms.id')
             ->havingRaw(
                 '? = 0 OR COUNT(restroom_ratings.id) > 0 AND SUM(rating) / COUNT(restroom_ratings.id) >= ?',
                 [$minimalRating, $minimalRating]
             )
-            ->where('name', 'like', '%' . $searchValue . '%')
-            ->orWhere('location_text', 'like', '%' . $searchValue . '%')
+            ->where(function ($query) use ($searchValue) {
+                $query->where('name', 'like', '%' . $searchValue . '%')
+                    ->orWhere('location_text', 'like', '%' . $searchValue . '%');
+            })
             ->offset($offset)->limit($limit)->with(['images', 'ratings'])
             ->get();
 
@@ -88,20 +95,28 @@ class RestroomService {
         return $restroomsResponse;
     }
 
-    public function getTotalCount($searchValue, $minimalRating)
+    public function getTotalCount($user, $searchValue, $minimalRating, $onlyMy)
     {
         if ($searchValue === null) $searchValue = '';
         if ($minimalRating === null) $minimalRating = 0;
 
-        return Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id')
+        $query = Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id');
+        if ($onlyMy === 'true') {
+            info('Inside only mine count');
+            $query->where('restrooms.user_id', $user->id);
+        }
+
+        return $query
             ->select('restrooms.*')
             ->groupBy('restrooms.id')
             ->havingRaw(
                 '? = 0 OR COUNT(restroom_ratings.id) > 0 AND SUM(rating) / COUNT(restroom_ratings.id) >= ?',
                 [$minimalRating, $minimalRating]
             )
-            ->where('name', 'like', '%' . $searchValue . '%')
-            ->orWhere('location_text', 'like', '%' . $searchValue . '%')
+            ->where(function ($query) use ($searchValue) {
+                $query->where('name', 'like', '%' . $searchValue . '%')
+                    ->orWhere('location_text', 'like', '%' . $searchValue . '%');
+            })
             ->get()
             ->count();
     }

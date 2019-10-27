@@ -84,7 +84,12 @@ class RestroomController extends Controller
      *     required=false,
      *     type="number"
      *   ),
-     *
+     *   @SWG\Parameter(
+     *     name="onlyMy",
+     *     in="query",
+     *     required=false,
+     *     type="bool"
+     *   )
      *   security={{"authorization_token":{}}},
      *   @SWG\Response(response=200, description="Successful operation"),
      *   @SWG\Response(response=401, description="Unauthorized"),
@@ -102,15 +107,14 @@ class RestroomController extends Controller
         $limit = $request->input('limit');
         $searchValue = $request->input('searchValue');
         $minimalRating = $request->input('minimalRating');
+        $onlyMy = $request->input('onlyMy');
 
         $response = [];
-        $restrooms = $this->restroomService->getAllFeedRestrooms($user, $offset, $limit, $searchValue, $minimalRating);
+        $restrooms = $this->restroomService->getAllFeedRestrooms(
+            $user, $offset, $limit, $searchValue, $minimalRating, $onlyMy
+        );
         $response['restrooms'] = $restrooms;
-        if ($minimalRating) {
-            $response['totalNumber'] = sizeof($restrooms);
-        } else {
-            $response['totalNumber'] = $this->restroomService->getTotalCount($searchValue, $minimalRating);
-        }
+        $response['totalNumber'] = $this->restroomService->getTotalCount($user, $searchValue, $minimalRating, $onlyMy);
 
         return response($response);
     }
