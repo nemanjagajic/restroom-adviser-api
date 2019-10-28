@@ -42,6 +42,14 @@ Route::group([ 'namespace' => 'Api' ], function () {
             Route::post('/', 'UserController@updateProfile');
         });
 
+
+        Route::group([
+            'prefix' => 'user/{user}',
+            'namespace' => 'User'
+        ], function () {
+            Route::get('/comments', 'UserController@getComments');
+        });
+
         Route::group([
             'prefix' => 'user/{user}/restroom',
         ], function () {

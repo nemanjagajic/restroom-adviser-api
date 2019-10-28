@@ -12,4 +12,9 @@ class RestroomComment extends Model
     {
         return $this->belongsTo('App\Models\User\User');
     }
+
+    public function restroom()
+    {
+        return $this->belongsTo('App\Models\Restroom');
+    }
 }

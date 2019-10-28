@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserChangePasswordRequest;
+use App\Models\User\User;
 use App\Services\User\UserService;
 use App\Http\Requests\User\UpdateProfileRequest;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 
 class UserController extends Controller {
@@ -113,5 +117,51 @@ class UserController extends Controller {
             Arr::only($request->validated(), [ 'first_name', 'last_name' ]),
             $request->file('avatar')
         );
+    }
+
+    /**
+     * @SWG\Get(
+     *   tags={"Restroom"},
+     *   path="/user/{user_id}/comments",
+     *   summary="Get comments for restroom",
+     *   operationId="getRestroomComments",
+     *   produces={"application/json"},
+     *   @SWG\Parameter(
+     *     name="user_id",
+     *     in="path",
+     *     description="ex. 1",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="offset",
+     *     in="query",
+     *     required=true,
+     *     type="number"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="limit",
+     *     in="query",
+     *     required=true,
+     *     type="number"
+     *   ),
+     *   security={{"authorization_token":{}}},
+     *   @SWG\Response(response=200, description="Successful operation"),
+     *   @SWG\Response(response=401, description="Unauthorized"),
+     *   @SWG\Response(response=422, description="Validation failed"),
+     *   @SWG\Response(response=500, description="Internal server error")
+     * )
+     *
+     * Get comments for user
+     * @param User $user
+     * @param Request $request
+     * @return ResponseFactory|Response
+     */
+    public function getComments(User $user, Request $request)
+    {
+        $offset = $request->input('offset');
+        $limit = $request->input('limit');
+        $comments = $this->_userService->getComments($user, $offset, $limit);
+        return response($comments, 200);
     }
 }
