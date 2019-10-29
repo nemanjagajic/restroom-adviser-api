@@ -48,6 +48,7 @@ Route::group([ 'namespace' => 'Api' ], function () {
             'namespace' => 'User'
         ], function () {
             Route::get('/comments', 'UserController@getComments');
+            Route::get('/ratings', 'UserController@getRatings');
         });
 
         Route::group([

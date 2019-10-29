@@ -3,6 +3,7 @@
 namespace App\Services\User;
 
 use App\Models\RestroomComment;
+use App\Models\RestroomRating;
 use App\Models\User\User;
 use App\Services\File\FilesService;
 use Illuminate\Http\UploadedFile;
@@ -71,7 +72,7 @@ class UserService {
 
     public function getComments($user, $offset, $limit)
     {
-        $comments =  RestroomComment::where('user_id', $user->id)
+        $comments = RestroomComment::where('user_id', $user->id)
             ->with('user')
             ->orderBy('created_at', 'desc')
             ->offset($offset)->limit($limit)
@@ -81,6 +82,19 @@ class UserService {
         return [
             'comments' => $comments,
             'numberOfComments' => RestroomComment::where('user_id', $user->id)->get()->count()
+        ];
+    }
+
+    public function getRatings($user, $offset, $limit)
+    {
+        $ratings = RestroomRating::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->offset($offset)->limit($limit)
+            ->get();
+
+        return [
+            'ratings' => $ratings,
+            'numberOfRatings' => RestroomRating::where('user_id', $user->id)->get()->count()
         ];
     }
 }
