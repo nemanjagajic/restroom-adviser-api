@@ -88,8 +88,9 @@ class UserService {
     public function getRatings($user, $offset, $limit)
     {
         $ratings = RestroomRating::where('user_id', $user->id)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->offset($offset)->limit($limit)
+            ->with('restroom')
             ->get();
 
         return [
