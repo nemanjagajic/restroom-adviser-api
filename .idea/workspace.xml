@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a94c69e7-2933-4df5-af52-ba119e7a3c60" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Models/RestroomRating.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Models/RestroomRating.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Services/User/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Services/User/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Services/RestroomService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Services/RestroomService.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/Services/User/UserService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="89" column="46" lean-forward="true" selection-start-line="89" selection-start-column="46" selection-end-line="89" selection-end-column="46" />
+            <state relative-caret-position="378">
+              <caret line="83" column="56" lean-forward="true" selection-start-line="83" selection-start-column="56" selection-end-line="83" selection-end-column="56" />
               <folding>
                 <element signature="e#37#68#0#PHP" expanded="true" />
               </folding>
@@ -90,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/Services/RestroomService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2070">
-              <caret line="145" column="43" selection-start-line="145" selection-start-column="43" selection-end-line="145" selection-end-column="43" />
+            <state relative-caret-position="326">
+              <caret line="69" column="13" lean-forward="true" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
               <folding>
                 <element signature="e#33#69#0#PHP" expanded="true" />
               </folding>
@@ -106,10 +104,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>post_max_size</find>
-      <find>upload_max_filesize</find>
-      <find>updaterules</find>
-      <find>compress</find>
       <find>compressAndSaveImage</find>
       <find>totalRating</find>
       <find>query</find>
@@ -130,12 +124,16 @@
       <find>swagger</find>
       <find>boolea</find>
       <find>feeds</find>
-      <find>getFeed</find>
       <find>inside on</find>
       <find>getComments</find>
       <find>getRatings</find>
       <find>order</find>
       <find>offset</find>
+      <find>ge</find>
+      <find>getFee</find>
+      <find>getFeed</find>
+      <find>getAllFeedRestrooms</find>
+      <find>feedRestrooms</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/app/Models/User</dir>
@@ -185,13 +183,13 @@
         <option value="$PROJECT_DIR$/src/database/migrations/2019_10_22_173706_alter_restrooms_add_working_hours.php" />
         <option value="$PROJECT_DIR$/src/database/migrations/2019_09_07_153757_create_restroom_ratings_table.php" />
         <option value="$PROJECT_DIR$/src/storage/logs/laravel.log" />
-        <option value="$PROJECT_DIR$/src/app/Services/RestroomService.php" />
         <option value="$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php" />
         <option value="$PROJECT_DIR$/src/app/Models/RestroomComment.php" />
         <option value="$PROJECT_DIR$/src/routes/api.php" />
         <option value="$PROJECT_DIR$/src/app/Http/Controllers/Api/User/UserController.php" />
         <option value="$PROJECT_DIR$/src/app/Models/RestroomRating.php" />
         <option value="$PROJECT_DIR$/src/app/Services/User/UserService.php" />
+        <option value="$PROJECT_DIR$/src/app/Services/RestroomService.php" />
       </list>
     </option>
   </component>
@@ -451,12 +449,12 @@
       <workItem from="1572283709040" duration="2052000" />
       <workItem from="1572351262843" duration="138000" />
       <workItem from="1572363686681" duration="1653000" />
-      <workItem from="1572462792325" duration="586000" />
+      <workItem from="1572462792325" duration="949000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94197000" />
+    <option name="totallyTimeSpent" value="94560000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
@@ -741,16 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Services/RestroomService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2070">
-          <caret line="145" column="43" selection-start-line="145" selection-start-column="43" selection-end-line="145" selection-end-column="43" />
-          <folding>
-            <element signature="e#33#69#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Http/Controllers/Api/User/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -779,10 +767,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Services/User/UserService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="89" column="46" lean-forward="true" selection-start-line="89" selection-start-column="46" selection-end-line="89" selection-end-column="46" />
+        <state relative-caret-position="378">
+          <caret line="83" column="56" lean-forward="true" selection-start-line="83" selection-start-column="56" selection-end-line="83" selection-end-column="56" />
           <folding>
             <element signature="e#37#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Services/RestroomService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="69" column="13" lean-forward="true" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
+          <folding>
+            <element signature="e#33#69#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

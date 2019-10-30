@@ -72,6 +72,7 @@ class RestroomService {
                 $query->where('name', 'like', '%' . $searchValue . '%')
                     ->orWhere('location_text', 'like', '%' . $searchValue . '%');
             })
+            ->orderBy('updated_at', 'desc')
             ->offset($offset)->limit($limit)->with(['images', 'ratings'])
             ->get();
 
