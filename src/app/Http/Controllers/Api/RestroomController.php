@@ -32,13 +32,20 @@ class RestroomController extends Controller
         $searchValue = $request->input('searchValue');
         $minimalRating = $request->input('minimalRating');
         $onlyMy = $request->input('onlyMy');
+        $onlyBookmarked = $request->input('onlyBookmarked');
 
         $response = [];
         $restrooms = $this->restroomService->getAllFeedRestrooms(
-            $user, $offset, $limit, $searchValue, $minimalRating, $onlyMy
+            $user, $offset, $limit, $searchValue, $minimalRating, $onlyMy, $onlyBookmarked
         );
         $response['restrooms'] = $restrooms;
-        $response['totalNumber'] = $this->restroomService->getTotalCount($user, $searchValue, $minimalRating, $onlyMy);
+        $response['totalNumber'] = $this->restroomService->getTotalCount(
+            $user,
+            $searchValue,
+            $minimalRating,
+            $onlyMy,
+            $onlyBookmarked
+        );
 
         return response($response);
     }

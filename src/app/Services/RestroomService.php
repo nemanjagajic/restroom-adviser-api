@@ -52,14 +52,20 @@ class RestroomService {
         return Restroom::with('images')->get();
     }
 
-    public function getAllFeedRestrooms($user, $offset, $limit, $searchValue, $minimalRating, $onlyMy)
+    public function getAllFeedRestrooms($user, $offset, $limit, $searchValue, $minimalRating, $onlyMy, $onlyBookmarked)
     {
         if ($searchValue === null) $searchValue = '';
         if ($minimalRating === null) $minimalRating = 0;
 
         $query = Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id');
+
         if ($onlyMy === 'true') {
             $query->where('restrooms.user_id', $user->id);
+        }
+
+        if ($onlyBookmarked) {
+            $bookmarkedRestroomsIds = RestroomBookmark::where('user_id', $user->id)->pluck('restroom_id')->toArray();
+            $query->whereIn('restrooms.id', $bookmarkedRestroomsIds);
         }
 
         $restrooms = $query
@@ -97,7 +103,7 @@ class RestroomService {
         return $restroomsResponse;
     }
 
-    public function getTotalCount($user, $searchValue, $minimalRating, $onlyMy)
+    public function getTotalCount($user, $searchValue, $minimalRating, $onlyMy, $onlyBookmarked)
     {
         if ($searchValue === null) $searchValue = '';
         if ($minimalRating === null) $minimalRating = 0;
@@ -105,6 +111,12 @@ class RestroomService {
         $query = Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id');
         if ($onlyMy === 'true') {
             $query->where('restrooms.user_id', $user->id);
+        }
+
+        if ($onlyBookmarked) {
+            $bookmarkedRestroomsIds = RestroomBookmark::where('user_id', $user->id)->pluck('restroom_id')->toArray();
+            info($bookmarkedRestroomsIds);
+            $query->whereIn('restrooms.id', $bookmarkedRestroomsIds);
         }
 
         return $query
