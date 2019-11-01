@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Constants\RestroomConstants;
+use App\Models\RestroomBookmark;
 use App\Models\RestroomComment;
 use App\Models\RestroomImage;
 use App\Models\User\User;
@@ -103,7 +104,6 @@ class RestroomService {
 
         $query = Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id');
         if ($onlyMy === 'true') {
-            info('Inside only mine count');
             $query->where('restrooms.user_id', $user->id);
         }
 
@@ -224,5 +224,29 @@ class RestroomService {
             'totalRating' => $totalRating,
             'numberOfRatings' => $numberOfRatings
         ];
+    }
+
+    public function bookmarkRestroom(User $user, Restroom $restroom)
+    {
+
+        $bookmarks = $this->getBookmarks($user, $restroom);
+
+        if (sizeof($bookmarks) === 0) {
+            return RestroomBookmark::create([
+                'user_id' => $user->id,
+                'restroom_id' => $restroom->id
+            ]);
+        }
+
+        $bookmarks[0]->delete();
+        $bookmarks[0]->isUnbookmarked = true;
+        return $bookmarks[0];
+    }
+
+    public function getBookmarks(User $user, Restroom $restroom)
+    {
+        return RestroomBookmark::where('user_id', $user->id)
+            ->where('restroom_id', $restroom->id)
+            ->get();
     }
 }

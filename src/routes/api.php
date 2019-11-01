@@ -61,6 +61,8 @@ Route::group([ 'namespace' => 'Api' ], function () {
             Route::get('/{restroom}/comments', 'RestroomController@getComments');
             Route::post('/{restroom}/ratings', 'RestroomController@addRating');
             Route::get('/{restroom}/ratings', 'RestroomController@getRatings');
+            Route::post('/{restroom}/bookmarks', 'RestroomController@bookmarkRestroom');
+            Route::get('/{restroom}/bookmarks', 'RestroomController@getBookmarks');
         });
     });
 });
