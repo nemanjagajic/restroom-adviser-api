@@ -8,6 +8,7 @@ use App\Models\CommentLike;
 use App\Models\RestroomBookmark;
 use App\Models\RestroomComment;
 use App\Models\RestroomImage;
+use App\Models\RestroomValidation;
 use App\Models\User\User;
 use App\Models\Restroom;
 use App\Models\RestroomRating;
@@ -275,6 +276,49 @@ class RestroomService {
     public function getBookmarks(User $user, Restroom $restroom)
     {
         return RestroomBookmark::where('user_id', $user->id)
+            ->where('restroom_id', $restroom->id)
+            ->get();
+    }
+
+    public function validateRestroom(User $user, Restroom $restroom)
+    {
+        $validations = $this->getRestroomValidations($user, $restroom);
+
+        if (sizeof($validations) === 0) {
+            return RestroomValidation::create([
+                'user_id' => $user->id,
+                'restroom_id' => $restroom->id,
+                'is_existing' => true
+            ]);
+        } else if ($validations[0] && !$validations[0]->is_existing) {
+            $validations[0]->update(['is_existing' => true]);
+            return $validations[0];
+        }
+
+        return null;
+    }
+
+    public function invalidateRestroom(User $user, Restroom $restroom)
+    {
+        $validations = $this->getRestroomValidations($user, $restroom);
+
+        if (sizeof($validations) === 0) {
+            return RestroomValidation::create([
+                'user_id' => $user->id,
+                'restroom_id' => $restroom->id,
+                'is_existing' => false
+            ]);
+        } else if ($validations[0] && $validations[0]->is_existing) {
+            $validations[0]->update(['is_existing' => false]);
+            return $validations[0];
+        }
+
+        return null;
+    }
+
+    public function getRestroomValidations(User $user, Restroom $restroom)
+    {
+        return RestroomValidation::where('user_id', $user->id)
             ->where('restroom_id', $restroom->id)
             ->get();
     }
