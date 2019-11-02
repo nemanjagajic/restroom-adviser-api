@@ -49,6 +49,8 @@ Route::group([ 'namespace' => 'Api' ], function () {
         ], function () {
             Route::get('/comments', 'UserController@getComments');
             Route::get('/ratings', 'UserController@getRatings');
+            Route::post('/comments/{restroom_comment}/like', 'UserController@likeComment');
+            Route::post('/comments/{restroom_comment}/unlike', 'UserController@unlikeComment');
         });
 
         Route::group([

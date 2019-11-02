@@ -2,6 +2,7 @@
 
 namespace App\Services\User;
 
+use App\Models\CommentLike;
 use App\Models\RestroomComment;
 use App\Models\RestroomRating;
 use App\Models\User\User;
@@ -97,5 +98,34 @@ class UserService {
             'ratings' => $ratings,
             'numberOfRatings' => RestroomRating::where('user_id', $user->id)->get()->count()
         ];
+    }
+
+    public function likeComment(User $user, RestroomComment $restroomComment)
+    {
+
+        $likes = $this->getLikes($user, $restroomComment);
+
+        if (sizeof($likes) === 0) {
+            return CommentLike::create([
+                'user_id' => $user->id,
+                'restroom_comment_id' => $restroomComment->id
+            ]);
+        }
+
+        return null;
+    }
+
+    public function unlikeComment(User $user, RestroomComment $restroomComment)
+    {
+        $likes = $this->getLikes($user, $restroomComment);
+        $likes[0]->delete();
+        return $likes[0];
+    }
+
+    public function getLikes(User $user, RestroomComment $restroomComment)
+    {
+        return CommentLike::where('user_id', $user->id)
+            ->where('restroom_comment_id', $restroomComment->id)
+            ->get();
     }
 }

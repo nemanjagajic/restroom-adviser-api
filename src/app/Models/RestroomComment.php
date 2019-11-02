@@ -17,4 +17,14 @@ class RestroomComment extends Model
     {
         return $this->belongsTo('App\Models\Restroom');
     }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Models\CommentLike');
+    }
+
+    public function isLikedByMe()
+    {
+
+    }
 }

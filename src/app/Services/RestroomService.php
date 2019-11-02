@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Constants\RestroomConstants;
+use App\Models\CommentLike;
 use App\Models\RestroomBookmark;
 use App\Models\RestroomComment;
 use App\Models\RestroomImage;
@@ -157,7 +158,17 @@ class RestroomService {
             ->with('user')
             ->orderBy('created_at', 'desc')
             ->offset($offset)->limit($limit)
+            ->with('likes')
             ->get();
+
+        foreach ($comments as $comment) {
+            $likesNumber = CommentLike::where('user_id', auth()->user()->id)
+                ->where('restroom_comment_id', $comment->id)
+                ->get()
+                ->count();
+
+            $comment->isLikedByMe = $likesNumber !== 0;
+        }
 
         return [
             'comments' => $comments,
