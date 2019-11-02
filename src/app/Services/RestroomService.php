@@ -158,16 +158,17 @@ class RestroomService {
             ->with('user')
             ->orderBy('created_at', 'desc')
             ->offset($offset)->limit($limit)
-            ->with('likes')
             ->get();
 
         foreach ($comments as $comment) {
-            $likesNumber = CommentLike::where('user_id', auth()->user()->id)
+            $numberOfLikes = CommentLike::where('restroom_comment_id', $comment->id)->count();
+            $myLikesNumber = CommentLike::where('user_id', auth()->user()->id)
                 ->where('restroom_comment_id', $comment->id)
                 ->get()
                 ->count();
 
-            $comment->isLikedByMe = $likesNumber !== 0;
+            $comment->numberOfLikes = $numberOfLikes;
+            $comment->isLikedByMe = $myLikesNumber !== 0;
         }
 
         return [
