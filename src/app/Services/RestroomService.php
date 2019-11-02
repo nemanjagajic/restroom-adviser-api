@@ -115,7 +115,6 @@ class RestroomService {
 
         if ($onlyBookmarked) {
             $bookmarkedRestroomsIds = RestroomBookmark::where('user_id', $user->id)->pluck('restroom_id')->toArray();
-            info($bookmarkedRestroomsIds);
             $query->whereIn('restrooms.id', $bookmarkedRestroomsIds);
         }
 
@@ -250,8 +249,14 @@ class RestroomService {
             ]);
         }
 
+        return null;
+    }
+
+    public function unbookmarkRestroom(User $user, Restroom $restroom)
+    {
+
+        $bookmarks = $this->getBookmarks($user, $restroom);
         $bookmarks[0]->delete();
-        $bookmarks[0]->isUnbookmarked = true;
         return $bookmarks[0];
     }
 

@@ -106,6 +106,12 @@ class RestroomController extends Controller
         return response($bookmark, 201);
     }
 
+    public function unbookmarkRestroom(User $user, Restroom $restroom)
+    {
+        $bookmark = $this->restroomService->unbookmarkRestroom($user, $restroom);
+        return response($bookmark, 200);
+    }
+
     public function getBookmarks(User $user, Restroom $restroom)
     {
         $bookmarks = $this->restroomService->getBookmarks($user, $restroom);
