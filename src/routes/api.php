@@ -66,6 +66,7 @@ Route::group([ 'namespace' => 'Api' ], function () {
             Route::post('/{restroom}/bookmark', 'RestroomController@bookmarkRestroom');
             Route::post('/{restroom}/unbookmark', 'RestroomController@unbookmarkRestroom');
             Route::get('/{restroom}/bookmarks', 'RestroomController@getBookmarks');
+            Route::get('/{restroom}/validations', 'RestroomController@getRestroomValidations');
             Route::post('/{restroom}/validate', 'RestroomController@validateRestroom');
             Route::post('/{restroom}/invalidate', 'RestroomController@invalidateRestroom');
         });

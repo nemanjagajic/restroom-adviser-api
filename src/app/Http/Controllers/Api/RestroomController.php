@@ -118,6 +118,12 @@ class RestroomController extends Controller
         return response($bookmarks, 200);
     }
 
+    public function getRestroomValidations(User $user, Restroom $restroom)
+    {
+        $validations = $this->restroomService->getRestroomValidations($user, $restroom);
+        return response($validations, 200);
+    }
+
     public function validateRestroom(User $user, Restroom $restroom)
     {
         $validation = $this->restroomService->validateRestroom($user, $restroom);

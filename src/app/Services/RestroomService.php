@@ -280,9 +280,26 @@ class RestroomService {
             ->get();
     }
 
+    public function getRestroomValidations(User $user, Restroom $restroom)
+    {
+        $positive = RestroomValidation::where('restroom_id', $restroom->id)
+            ->where('is_existing', true)
+            ->get()
+            ->count();
+
+        $negative = RestroomValidation::where('restroom_id', $restroom->id)
+            ->where('is_existing', false)
+            ->get()
+            ->count();
+
+        $myValidations = $this->getRestroomValidationsByUser($user, $restroom);
+
+        return [ 'positive' => $positive, 'negative' => $negative, 'myValidations' => $myValidations ];
+    }
+
     public function validateRestroom(User $user, Restroom $restroom)
     {
-        $validations = $this->getRestroomValidations($user, $restroom);
+        $validations = $this->getRestroomValidationsByUser($user, $restroom);
 
         if (sizeof($validations) === 0) {
             return RestroomValidation::create([
@@ -300,7 +317,7 @@ class RestroomService {
 
     public function invalidateRestroom(User $user, Restroom $restroom)
     {
-        $validations = $this->getRestroomValidations($user, $restroom);
+        $validations = $this->getRestroomValidationsByUser($user, $restroom);
 
         if (sizeof($validations) === 0) {
             return RestroomValidation::create([
@@ -316,7 +333,7 @@ class RestroomService {
         return null;
     }
 
-    public function getRestroomValidations(User $user, Restroom $restroom)
+    private function getRestroomValidationsByUser(User $user, Restroom $restroom)
     {
         return RestroomValidation::where('user_id', $user->id)
             ->where('restroom_id', $restroom->id)
