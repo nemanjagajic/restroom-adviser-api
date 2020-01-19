@@ -49,6 +49,27 @@ class RestroomService {
         return $restroom;
     }
 
+    public function delete(User $user, Restroom $restroom)
+    {
+        RestroomBookmark::where('restroom_id', $restroom->id)->delete();
+        RestroomRating::where('restroom_id', $restroom->id)->delete();
+        RestroomValidation::where('restroom_id', $restroom->id)->delete();
+
+        $comments = RestroomComment::where('restroom_id', $restroom->id)->get();
+        foreach ($comments as $comment) {
+            CommentLike::where('restroom_comment_id', $comment->id)->delete();
+        }
+        RestroomComment::where('restroom_id', $restroom->id)->delete();
+
+        $images = RestroomImage::where('restroom_id', $restroom->id)->get();
+        foreach ($images as $image) {
+            $this->filesService->removeImage($image->path);
+        }
+        RestroomImage::where('restroom_id', $restroom->id)->delete();
+
+        Restroom::where('id', $restroom->id)->delete();
+    }
+
     public function getAll()
     {
         return Restroom::with('images')->get();
@@ -56,8 +77,12 @@ class RestroomService {
 
     public function getAllFeedRestrooms($user, $offset, $limit, $searchValue, $minimalRating, $onlyMy, $onlyBookmarked)
     {
-        if ($searchValue === null) $searchValue = '';
-        if ($minimalRating === null) $minimalRating = 0;
+        if ($searchValue === null) {
+            $searchValue = '';
+        }
+        if ($minimalRating === null) {
+            $minimalRating = 0;
+        };
 
         $query = Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id');
 
@@ -107,8 +132,12 @@ class RestroomService {
 
     public function getTotalCount($user, $searchValue, $minimalRating, $onlyMy, $onlyBookmarked)
     {
-        if ($searchValue === null) $searchValue = '';
-        if ($minimalRating === null) $minimalRating = 0;
+        if ($searchValue === null) {
+            $searchValue = '';
+        }
+        if ($minimalRating === null) {
+            $minimalRating = 0;
+        }
 
         $query = Restroom::leftJoin('restroom_ratings', 'restrooms.id', '=', 'restroom_ratings.restroom_id');
         if ($onlyMy === 'true') {
@@ -292,14 +321,14 @@ class RestroomService {
             ->get()
             ->count();
 
-        $myValidations = $this->getRestroomValidationsByUser($user, $restroom);
+        $myValidations = $this->_getRestroomValidationsByUser($user, $restroom);
 
         return [ 'positive' => $positive, 'negative' => $negative, 'myValidations' => $myValidations ];
     }
 
     public function validateRestroom(User $user, Restroom $restroom)
     {
-        $validations = $this->getRestroomValidationsByUser($user, $restroom);
+        $validations = $this->_getRestroomValidationsByUser($user, $restroom);
 
         if (sizeof($validations) === 0) {
             return RestroomValidation::create([
@@ -307,7 +336,7 @@ class RestroomService {
                 'restroom_id' => $restroom->id,
                 'is_existing' => true
             ]);
-        } else if ($validations[0] && !$validations[0]->is_existing) {
+        } elseif ($validations[0] && !$validations[0]->is_existing) {
             $validations[0]->update(['is_existing' => true]);
             return $validations[0];
         }
@@ -317,7 +346,7 @@ class RestroomService {
 
     public function invalidateRestroom(User $user, Restroom $restroom)
     {
-        $validations = $this->getRestroomValidationsByUser($user, $restroom);
+        $validations = $this->_getRestroomValidationsByUser($user, $restroom);
 
         if (sizeof($validations) === 0) {
             return RestroomValidation::create([
@@ -325,7 +354,7 @@ class RestroomService {
                 'restroom_id' => $restroom->id,
                 'is_existing' => false
             ]);
-        } else if ($validations[0] && $validations[0]->is_existing) {
+        } elseif ($validations[0] && $validations[0]->is_existing) {
             $validations[0]->update(['is_existing' => false]);
             return $validations[0];
         }
@@ -333,7 +362,7 @@ class RestroomService {
         return null;
     }
 
-    private function getRestroomValidationsByUser(User $user, Restroom $restroom)
+    private function _getRestroomValidationsByUser(User $user, Restroom $restroom)
     {
         return RestroomValidation::where('user_id', $user->id)
             ->where('restroom_id', $restroom->id)

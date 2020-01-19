@@ -12,8 +12,7 @@ use App\Models\User\User;
 use App\Services\RestroomService;
 use Illuminate\Http\Request;
 
-class RestroomController extends Controller
-{
+class RestroomController extends Controller {
     protected $restroomService;
 
     public function __construct(RestroomService $restroomService)
@@ -22,11 +21,13 @@ class RestroomController extends Controller
     }
 
 
-    public function index() {
+    public function index()
+    {
         return $this->restroomService->getAll();
     }
 
-    public function getFeedRestrooms(User $user, GetFeedRestroomsRequest $request) {
+    public function getFeedRestrooms(User $user, GetFeedRestroomsRequest $request)
+    {
         $offset = $request->input('offset');
         $limit = $request->input('limit');
         $searchValue = $request->input('searchValue');
@@ -36,7 +37,13 @@ class RestroomController extends Controller
 
         $response = [];
         $restrooms = $this->restroomService->getAllFeedRestrooms(
-            $user, $offset, $limit, $searchValue, $minimalRating, $onlyMy, $onlyBookmarked
+            $user,
+            $offset,
+            $limit,
+            $searchValue,
+            $minimalRating,
+            $onlyMy,
+            $onlyBookmarked
         );
         $response['restrooms'] = $restrooms;
         $response['totalNumber'] = $this->restroomService->getTotalCount(
@@ -54,9 +61,14 @@ class RestroomController extends Controller
     {
         $inputData = $restroomRequest->except('images');
         $restroom = $this->restroomService->create($user, $inputData, $restroomRequest->only('images'));
-        info($restroom);
 
         return response($restroom, 201);
+    }
+
+    public function delete(User $user, Restroom $restroom)
+    {
+        $this->restroomService->delete($user, $restroom);
+        return response('Successfully deleted restroom with id '.$restroom->id);
     }
 
     public function addComment(User $user, Restroom $restroom, CreateRestroomCommentRequest $request)
