@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a94c69e7-2933-4df5-af52-ba119e7a3c60" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/restroom-adviser-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/restroom-adviser-api.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Http/Controllers/Api/RestroomController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Services/RestroomService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Services/RestroomService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/src/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Services/Auth/AuthService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Services/Auth/AuthService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Services/Auth/Social/SocialAuthService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Services/Auth/Social/SocialAuthService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/jwt.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/jwt.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,11 +167,6 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="877" />
-  </component>
   <component name="ProjectId" id="1WcSGZiAwzZYF6jNLchsptCSYeF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -245,6 +243,9 @@
       <workItem from="1572462792325" duration="1247000" />
       <workItem from="1572622105232" duration="17970000" />
       <workItem from="1579447298784" duration="3496000" />
+      <workItem from="1579715398652" duration="29000" />
+      <workItem from="1579861196832" duration="580000" />
+      <workItem from="1579960686059" duration="4226000" />
     </task>
     <servers />
   </component>
@@ -256,21 +257,21 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579455296788">
+    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579965618542">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1579455296788" />
-    <state x="399" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1579451804445">
+    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1579965618542" />
+    <state x="399" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1579960688204">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="399" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1579451804445" />
-    <state x="386" y="223" width="667" height="476" key="find.popup" timestamp="1579456289127">
+    <state x="399" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1579960688204" />
+    <state x="386" y="223" width="667" height="486" key="find.popup" timestamp="1579965770669">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="223" width="667" height="476" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1579456289127" />
-    <state x="385" y="112" width="670" height="676" key="search.everywhere.popup" timestamp="1579455198610">
+    <state x="386" y="223" width="667" height="486" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1579965770669" />
+    <state x="385" y="112" width="670" height="676" key="search.everywhere.popup" timestamp="1579966269090">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="112" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1579455198610" />
+    <state x="385" y="112" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1579966269090" />
   </component>
 </project>

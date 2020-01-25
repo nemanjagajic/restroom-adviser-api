@@ -33,7 +33,7 @@ Route::group([ 'namespace' => 'Api' ], function () {
         Route::post('reset-password', 'ForgotPasswordController@resetPassword');
     });
 
-    Route::group([ 'middleware' => [ 'auth:api' ] ], function () {
+    Route::group([ 'middleware' => [ 'auth:api', 'check-logged-user' ] ], function () {
         Route::group([
             'prefix' => 'user',
             'namespace' => 'User'
