@@ -51,7 +51,11 @@ class UserService {
         $user->update($updateData);
 
         if (!empty($avatarFile)) {
-            $imagePath = $user->avatar ?? UserConstants::formatAvatarPath($user->id);
+            if (substr($user->avatar, 0, 4) === "http") {
+                $imagePath = UserConstants::formatAvatarPath($user->id);
+            } else {
+                $imagePath = $user->avatar ?? UserConstants::formatAvatarPath($user->id);
+            }
             $compressImage = new CompressImage(
                 $avatarFile,
                 UserConstants::AVATAR_WIDTH,
