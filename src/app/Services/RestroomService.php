@@ -245,7 +245,9 @@ class RestroomService {
 
         if (!$includeRatings) {
             return [
-                'rating' => $numberOfRatings !== 0 ? $totalRating / $numberOfRatings : 0,
+                'rating' => $numberOfRatings !== 0
+                    ? number_format((float)($totalRating / $numberOfRatings), 1, '.', '')
+                    : 0,
                 'totalRating' => $totalRating,
                 'numberOfRatings' => $numberOfRatings,
                 'myRating' => $myRating
@@ -253,7 +255,9 @@ class RestroomService {
         }
 
         return [
-            'rating' => $numberOfRatings !== 0 ? $totalRating / $numberOfRatings : 0,
+            'rating' => $numberOfRatings !== 0
+                ? number_format((float)($totalRating / $numberOfRatings), 1, '.', '')
+                : 0,
             'ratings' => $ratingsReversed,
             'totalRating' => $totalRating,
             'numberOfRatings' => $numberOfRatings,
