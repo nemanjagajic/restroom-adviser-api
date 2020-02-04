@@ -271,7 +271,9 @@ class RestroomService {
             $numberOfRatings++;
         }
 
-        $totalRating = $numberOfRatings !== 0 ? $totalRating / $numberOfRatings : 0;
+        $totalRating = $numberOfRatings !== 0 ?
+            number_format((float)($totalRating / $numberOfRatings), 1, '.', '')
+            : 0;
 
         return [
             'totalRating' => $totalRating,
