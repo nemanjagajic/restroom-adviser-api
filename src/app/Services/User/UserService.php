@@ -128,4 +128,10 @@ class UserService {
             ->where('restroom_comment_id', $restroomComment->id)
             ->get();
     }
+
+    public function deleteComment(User $user, RestroomComment $comment)
+    {
+        CommentLike::where('restroom_comment_id', $comment->id)->delete();
+        RestroomComment::where('id', $comment->id)->delete();
+    }
 }

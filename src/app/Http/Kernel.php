@@ -2,7 +2,6 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\CheckLoggedUser;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel {
@@ -63,6 +62,8 @@ class Kernel extends HttpKernel {
         'oauthClient' => \App\Http\Middleware\OauthClient::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'email-verified' => \App\Http\Middleware\UserEmailVerifiedMiddleware::class,
-        'check-logged-user' => \App\Http\Middleware\CheckLoggedUser::class
+        'check-logged-user' => \App\Http\Middleware\CheckLoggedUser::class,
+        'check-is-restroom-mine' => \App\Http\Middleware\CheckIsRestroomMine::class,
+        'check-is-comment-mine' => \App\Http\Middleware\CheckIsCommentMine::class
     ];
 }

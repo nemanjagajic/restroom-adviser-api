@@ -49,6 +49,7 @@ Route::group([ 'namespace' => 'Api' ], function () {
             'namespace' => 'User'
         ], function () {
             Route::get('/comments', 'UserController@getComments');
+            Route::delete('/comments/{comment}', 'UserController@deleteComment')->middleware('check-is-comment-mine');
             Route::get('/ratings', 'UserController@getRatings');
             Route::post('/comments/{restroom_comment}/like', 'UserController@likeComment');
             Route::post('/comments/{restroom_comment}/unlike', 'UserController@unlikeComment');
@@ -60,7 +61,7 @@ Route::group([ 'namespace' => 'Api' ], function () {
             Route::get('/', 'RestroomController@index');
             Route::post('/', 'RestroomController@store');
             Route::get('/feedRestrooms', 'RestroomController@getFeedRestrooms');
-            Route::delete('/{restroom}', 'RestroomController@delete');
+            Route::delete('/{restroom}', 'RestroomController@delete')->middleware('check-is-restroom-mine');
             Route::post('/{restroom}/comments', 'RestroomController@addComment');
             Route::get('/{restroom}/comments', 'RestroomController@getComments');
             Route::post('/{restroom}/ratings', 'RestroomController@addRating');

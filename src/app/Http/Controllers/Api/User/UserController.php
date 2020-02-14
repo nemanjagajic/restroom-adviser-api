@@ -69,4 +69,10 @@ class UserController extends Controller {
         $restroomComment = $this->_userService->unlikeComment($user, $restroomComment);
         return response($restroomComment, 200);
     }
+
+    public function deleteComment(User $user, RestroomComment $comment)
+    {
+        $this->_userService->deleteComment($user, $comment);
+        return response('Successfully deleted restroom with id '.$comment->id);
+    }
 }
